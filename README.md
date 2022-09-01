@@ -1,1 +1,1 @@
-# training_RUST
+# training_rust
