@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  app:
+    container_name: rust
+
+    image: training_rust
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ./app:/usr/src/app
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/root/.gitconfig:ro
+
+    stdin_open: true
+    tty: true
