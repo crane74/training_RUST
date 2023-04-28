@@ -1,30 +1,37 @@
 {
 	"name": "Rust",
-
-	"dockerComposeFile": [
-		"../docker-compose.yml",
-		"docker-compose.yml"
+	"dockerFile": "./Dockerfile",
+	"mounts": [
+		"source=${localWorkspaceFolder}/,target=/workspace,type=bind,consistency=cached"
 	],
-
-	"service": "app",
-
-	"workspaceFolder": "/usr/src/app",
 	"customizations": {
 		"vscode": {
+			"settings": {
+				"[rust]": {
+					"editor.formatOnSave": true
+				},
+				"rust-analyzer.checkOnSave": true,
+				"rust-analyzer.check.command": "clippy",
+				"rust-analyzer.check.extraArgs": [
+					"--",
+					"-A",
+					"clippy::needless_return"
+				]
+			},
 			"extensions": [
+				"Swellaby.rust-pack",
+				"MS-CEINTL.vscode-language-pack-ja",
+				"GitHub.copilot",
+				"GitHub.copilot-labs",
 				"vadimcn.vscode-lldb",
-				"mutantdino.resourcemonitor",
-				"rust-lang.rust-analyzer",
-				"tamasfe.even-better-toml",
-				"serayuzgur.crates",
-				"GitHub.github-vscode-theme",
-				"streetsidesoftware.code-spell-checker",
-				"donjayamanne.githistory",
-				"eamodio.gitlens",
-				"christian-kohler.path-intellisense",
-				"shardulm94.trailing-spaces",
-				"mosapride.zenkaku"
+				"JScearcy.rust-doc-viewer",
+				"swellaby.vscode-rust-test-adapter",
+				"ritwickdey.LiveServer"
 			]
 		}
-	}
+	},
+	"forwardPorts": [
+		8000
+	],
+	"workspaceFolder": "/workspace"
 }

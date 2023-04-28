@@ -1,9 +1,6 @@
 FROM rust:1-bullseye
 
-# タイムゾーンを日本に設定
-ENV TZ=Asia/Tokyo
-
-# インフラ整備
+# アップデートなど
 RUN apt update && apt upgrade -y  \
     && apt install -y tree \
     && apt clean \
@@ -14,9 +11,6 @@ RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes && \
     echo eval "$(starship init bash)" >> ~/.bashrc
 
 # Rust便利ツールの追加
-RUN cargo install cargo-edit \
-    && cargo install cargo-watch \
-    && rustup component add rustfmt \
-    && rustup component add clippy
+RUN cargo install cargo-edit cargo-watch \
+    && rustup component add rustfmt clippy rls rust-analysis rust-src
 
-WORKDIR /usr/src/app
