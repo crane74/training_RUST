@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "/workspace/atcoder/abc197/Cargo.toml"
+    ]
+}

@@ -1,24 +1,26 @@
 {
-	"name": "Rust",
-	"dockerFile": "./Dockerfile",
-	"mounts": [
-		"source=${localWorkspaceFolder}/,target=/workspace,type=bind,consistency=cached"
-	],
-	"customizations": {
-		"vscode": {
-			"settings": {
-				"[rust]": {
-					"editor.formatOnSave": true
-				},
-				"rust-analyzer.checkOnSave": true,
-				"rust-analyzer.check.command": "clippy",
-				"rust-analyzer.check.extraArgs": [
-					"--",
-					"-A",
-					"clippy::needless_return"
-				]
-			},
-			"extensions": [
+    "name": "Rust",
+    "dockerFile": "./Dockerfile",
+    "mounts": [
+        "source=${localWorkspaceFolder}/,target=/workspace,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.ssh/,target=/root/.ssh/,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached"
+    ],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "[rust]": {
+                    "editor.formatOnSave": true
+                },
+                "rust-analyzer.checkOnSave": true,
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.check.extraArgs": [
+                    "--",
+                    "-A",
+                    "clippy::needless_return"
+                ]
+            },
+            "extensions": [
 				"Swellaby.rust-pack",
 				"MS-CEINTL.vscode-language-pack-ja",
 				"GitHub.copilot",
@@ -26,12 +28,14 @@
 				"vadimcn.vscode-lldb",
 				"JScearcy.rust-doc-viewer",
 				"swellaby.vscode-rust-test-adapter",
-				"ritwickdey.LiveServer"
+				"ritwickdey.LiveServer",
+				"donjayamanne.githistory",
+				"eamodio.gitlens"
 			]
-		}
-	},
-	"forwardPorts": [
-		8000
-	],
-	"workspaceFolder": "/workspace"
+        }
+    },
+    "forwardPorts": [
+        8000
+    ],
+    "workspaceFolder": "/workspace"
 }
